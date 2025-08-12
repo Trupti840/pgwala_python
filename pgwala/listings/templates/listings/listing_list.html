@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PGWala - Listings</title>
+  </head>
+  <body>
+    <h1>Available PGs</h1>
+
+    <form method="get">
+      <input
+        type="text"
+        name="q"
+        placeholder="Search by location"
+        value="{{ request.GET.q }}"
+      />
+      <button type="submit">Search</button>
+    </form>
+
+    <ul>
+      {% for pg in listings %}
+      <li>
+        <strong>{{ pg.title }}</strong> - {{ pg.location }} - ₹{{ pg.rent }}
+        <br />Available from: {{ pg.available_from }}
+        <p>{{ pg.description }}</p>
+      </li>
+      {% empty %}
+      <li>No PGs found.</li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
